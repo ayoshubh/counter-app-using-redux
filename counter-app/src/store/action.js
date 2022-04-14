@@ -1,9 +1,10 @@
 const ADD = 'ADD'
 
-function addText(){
+export const addText=(data)=>{
     return{
         type: ADD,
-    payload: []
+        payload: data
     }
 }
+
 

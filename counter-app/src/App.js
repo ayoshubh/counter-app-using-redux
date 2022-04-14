@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
+import { addText } from './store/action';
 
 function App() {
   const [name, setName] = useState('')
-  const [list, setList] = useState([])
-  const counter = useSelector((state) => state.counter);
+  // const [list, setList] = useState([])
+  // const counter = useSelector((state) => state.counter);
+  const list = useSelector((state)=> state)
   const dispatch = useDispatch()
   const increment = () =>{
     dispatch({ type: 'INC'});
@@ -17,14 +19,15 @@ function App() {
   const handleSubmit = (e) =>{
     e.preventDefault();
     const data={name}
-    setList((ls)=>[...ls,data])
+    dispatch(addText(data))
+
     setName('')
   }
 
   return (
     <div style={{backgroundColor:'black', color:'white', height:'100vh'}}>
     <h1>Counter App</h1>
-    <h2>{counter}</h2>
+    {/* <h2>{counter}</h2> */}
     <button onClick={increment}>Increment</button>
     <button onClick={decrement}>Decrement</button>
     <br/><br/>
