@@ -1,4 +1,5 @@
-const ADD = 'ADD'
+export const ADD = 'ADD'
+ export const REMOVE = 'REMOVE'
 
 export const addText=(data)=>{
     return{
@@ -6,5 +7,14 @@ export const addText=(data)=>{
         payload: data
     }
 }
+
+export const deleteText=(data)=>{
+    console.log("action",data)
+    return{
+        type: REMOVE,
+        payload: data
+    }
+}
+
 
 
