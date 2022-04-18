@@ -1,5 +1,5 @@
 import { createStore } from 'redux'
-import { ADD, REMOVE } from './action'
+import { ADD, REMOVE, UPDATE } from './action'
 
 const reducerFn = (state = { counter: 0 }, action) => {
 
@@ -16,10 +16,12 @@ const reducerFn = (state = { counter: 0 }, action) => {
 
 
 export const inputFn = (state = [], action) => {
-
+    
+// const { data, id} = action.payload
     switch (action.type) {
-        case ADD: return [...state, action.payload]
-        case REMOVE: return state.filter((task) => task !== action.payload )
+        case ADD: return [   ...state, action.payload ]
+        case REMOVE: return state.filter((task) => task.id !== action.payload )
+        case UPDATE : return [action.payload]
 
         default: return state
     }

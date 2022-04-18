@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { addText, deleteText } from './store/action';
+import { addText, deleteText, updateText } from './store/action';
+import Update from './Update';
 
 function App() {
   const [name, setName] = useState('')
@@ -23,9 +24,10 @@ function App() {
 
     setName('')
   }
-
   
-  console.log(list)
+  
+  
+  // console.log(list)
   return (
     <div style={{backgroundColor:'black', color:'white', height:'100vh'}}>
     {/* <h1>Counter App</h1>
@@ -35,15 +37,21 @@ function App() {
     <br/><br/> */}
     <h1>Task Manager</h1>
     <form onSubmit={handleSubmit}>
-    <input name="name" type="text" placeholder="enter text" value={name}  onChange={(e) => setName(e.target.value)}/>
+    <input id="textField" name="name" type="text" placeholder="enter text" value={name}  onChange={(e) => setName(e.target.value)}/>
     <button >Add</button>
     </form>
     
     {
-      list.map((a)=><div>
-        <li>
-          {a}
-          <button onClick={()=>dispatch(deleteText(a))}>Delete </button>
+      list.map((a)=><div >
+        <li >
+          {a.data}
+          <button>
+              Update
+              </button>
+              
+          <button onClick={()=>dispatch(deleteText(a.id))}>Delete </button>
+          <Update />
+          {/* {console.log(a, "inside list")} */}
           </li>
       </div>)
     }
